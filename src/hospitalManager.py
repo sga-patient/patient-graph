@@ -1,5 +1,5 @@
 import db.neo4jDB as neo4jDB
-import neo4jController
+import db.neo4jController as neo4jController
 
 def putInDB(filename):
     info = neo4jDB.getInfo()
