@@ -19,3 +19,10 @@ class Neo4jController:
         if self.session == None:
             return
         self.session.close()
+
+    def selectAll(self):
+        q = "MATCH (n) RETURN n"
+        nodes = self.run(q)
+
+        for node in nodes:
+            print(node)
