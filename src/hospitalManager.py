@@ -38,6 +38,6 @@ def getPolygon():
 
 
 if __name__=="__main__":
-    filename = "/Volumes/Seagate/workspace/sga-patient/patient-graph/data/hospital.csv"
+    filename = "data/hospital.csv"
 
     hospitalList = getInfoFromCsv(filename)
