@@ -12,6 +12,9 @@ class Neo4jController:
             driver = GraphDatabase.driver(self.url, auth=(self.user, self.pw))
             self.session = driver.session()
     
+    def run(self, q):
+        self.session.run(q)
+    
     def close(self):
         if self.session == None:
             return
