@@ -33,9 +33,11 @@ def getInfoFromCsv(filename):
             hospitalList.append(hospital)
     return hospitalList
 
+def getPolygon():
+    pass
+
 
 if __name__=="__main__":
     filename = "/Volumes/Seagate/workspace/sga-patient/patient-graph/data/hospital.csv"
 
     hospitalList = getInfoFromCsv(filename)
-    
