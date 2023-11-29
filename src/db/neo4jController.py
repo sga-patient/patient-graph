@@ -4,13 +4,14 @@ class Neo4jController:
         self.user = user
         self.pw = pw
         self.session = None
+        self.driver = None
 
-    def connect(self):
+    def connect(self, database="neo4j"):
         from neo4j import GraphDatabase
 
         if self.session == None:
-            driver = GraphDatabase.driver(self.url, auth=(self.user, self.pw))
-            self.session = driver.session()
+            self.driver = GraphDatabase.driver(self.url, auth=(self.user, self.pw))
+            self.session = self.driver.session(database=database)
     
     def run(self, q):
         self.session.run(q)
@@ -19,10 +20,15 @@ class Neo4jController:
         if self.session == None:
             return
         self.session.close()
+        self.driver.close()
 
-    def selectAll(self):
-        q = "MATCH (n) RETURN n"
+    def selectAll(self, database="neo4j"):
+        q = f"MATCH (n: {database}) RETURN n"
         nodes = self.run(q)
+
+        if nodes == None:
+            print('None')
+            return
 
         for node in nodes:
             print(node)
