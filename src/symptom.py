@@ -12,7 +12,6 @@ def registerSymptom(filename):
 
     print(df)
     
-    """
     subjects = df['2단계'].drop_duplicates().to_list()
     print(subjects)
 
@@ -20,9 +19,7 @@ def registerSymptom(filename):
     for s in subjects:
         print(f"Create (m:Subject2" + "{" + f"subject: \"{s}\"" + "})")
         controller.run(f"Create (m:Subject2" + "{" + f"subject: \"{s}\"" + "})")
-    """
-        
-    """
+   
     symptoms = df[['2단계','4단계', '응급도 코드', '등급']]
     symptoms = symptoms.rename(columns={'2단계': '진료과', '4단계': '증상'})
 
@@ -33,7 +30,7 @@ def registerSymptom(filename):
     for s in symptom:
         print(f"Create (n:Symptom" + "{" + f"symptom: \"{s['증상']}\", subject: \"{s['진료과']}\", emergency_code: \"{s['응급도 코드']}\", level:{s['등급']}" + "})")
         controller.run(f"Create (n:Symptom" + "{" + f"symptom: \"{s['증상']}\", subject: \"{s['진료과']}\", emergency_code: \"{s['응급도 코드']}\", level:{s['등급']}" + "})")
-    """
+
     records, summary, keys = controller.driver.execute_query("MATCH(s:Subject2) RETURN s.subject as subject", database_='hospital')
     pathes = []
     for i in records:
