@@ -14,7 +14,7 @@ class Neo4jController:
             self.session = self.driver.session(database=database)
     
     def run(self, q):
-        self.session.run(q)
+        return self.session.run(q)
     
     def close(self):
         if self.session == None:
